@@ -1,0 +1,11 @@
+[v-cloak] {
+  display: none;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+#app .text-normal-spacing {
+  letter-spacing: normal;
+}

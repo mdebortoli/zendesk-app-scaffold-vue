@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "Zendesk App",
+    "short_description": "This a Zendesk sample app built with Vue.js and Vuetify.",
+    "long_description": "This a Zendesk sample app built with Vue.js and Vuetify.",
+    "installation_instructions": "Simply click install."
+  }
+}

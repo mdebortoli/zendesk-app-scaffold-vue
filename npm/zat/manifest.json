@@ -1,0 +1,24 @@
+{
+  "name": "Zendesk App",
+  "author": {
+    "name": "Your Name",
+    "email": "your@email.com",
+    "url": "https://www.yourwebsite.com"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": {
+    "support": {
+      "ticket_sidebar": {
+        "url": "http://localhost:8080",
+        "prodUrl": "assets/iframe.html",
+        "size": {
+          "width": "100%",
+          "height": "430px"
+        }
+      }
+    }
+  },
+  "version": "1.0",
+  "frameworkVersion": "2.0"
+}
