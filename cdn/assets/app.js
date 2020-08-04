@@ -29,14 +29,21 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   data: {
+    // Ticket requester info
     requester: {
       id: 0,
       avatar: null,
       name: null,
       email: null
     },
+
+    // Default avatar URL
     defaultAvatar: 'https://i2.wp.com/assets.zendesk.com/images/2016/default-avatar-80.png',
+
+    // Selected item
     item: 0,
+
+    // Items (built with ...)
     items: [
       { text: 'Vue.js', url: 'https://vuejs.org/' },
       { text: 'Vuetify', url: 'https://vuetifyjs.com/en/' },

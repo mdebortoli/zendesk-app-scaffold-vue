@@ -1,10 +1,10 @@
 <template>
-  <div class="user-info text-center">
+  <div class="app-user-info">
     <v-avatar>
-      <img :src="avatar ? avatar : defaultAvatar" :alt="name" >
+      <v-img :src="avatar ? avatar : defaultAvatar" />
     </v-avatar>
-    <h1 class="text-center">{{ name }}</h1>
-    <p class="text-center">{{ email }}</p>
+    <h1>{{ name }}</h1>
+    <p>{{ email }}</p>
   </div>
 </template>
 
@@ -25,14 +25,21 @@ export default {
   // Data
   /////////////////////////////////////////////////////////////////////////////
 
-  data: () => ({
-    defaultAvatar: 'https://i2.wp.com/assets.zendesk.com/images/2016/default-avatar-80.png'
-  })
+  data() {
+    return {
+      defaultAvatar: 'https://i2.wp.com/assets.zendesk.com/images/2016/default-avatar-80.png'
+    }
+  }
 
 }
 </script>
 
 <style scoped>
+.app-user-info,
+.app-user-info * {
+  text-align: center;
+}
+
 h1 {
   font-size: 22px;
 }
