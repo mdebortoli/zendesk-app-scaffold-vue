@@ -7,21 +7,21 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
 </head>
 
 <body>
   <!-- Vuetify wrapper (required) -->
   <v-app id="app" v-cloak>
+    <div v-if="!loading" class="main">
 
-    <div class="main">
       <!-- User info - Start -->
       <div class="user-info text-center">
         <v-avatar>
-          <img :src="requester.avatar ? requester.avatar : defaultAvatar" :alt="requester.name">
+          <v-img :src="ticket.requester.avatar ? ticket.requester.avatar : defaultAvatar" />
         </v-avatar>
-        <h1 class="text-center">{{ requester.name }}</h1>
-        <p class="text-center">{{ requester.email }}</p>
+        <h1 class="text-center">{{ ticket.requester.name }}</h1>
+        <p class="text-center">{{ ticket.requester.email }}</p>
       </div>
       <!-- User info - End -->
 
@@ -34,7 +34,7 @@
 
       <v-list dense>
         <v-list-item-group v-model="item" color="primary">
-          <v-list-item v-for="(item, index) in items" :key="index">
+          <v-list-item v-for="(item, i) in items" :key="`item-${i}`">
             <v-list-item-icon>
               <v-icon size="15">fa-chevron-right</v-icon>
             </v-list-item-icon>
@@ -61,15 +61,15 @@
         </v-btn>
       </p>
       <!-- App content - End -->
-    </div>
 
+    </div>
   </v-app>
 
   <!-- Required JS modules-->
   <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>

@@ -29,14 +29,19 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   data: {
-    requester: {
-      id: 0,
-      avatar: null,
-      name: null,
-      email: null
-    },
+    // Loader status
+    loading: false,
+
+    // Ticket info
+    ticket: {},
+
+    // Default avatar URL
     defaultAvatar: 'https://i2.wp.com/assets.zendesk.com/images/2016/default-avatar-80.png',
+
+    // Selected item
     item: 0,
+
+    // Items (built with ...)
     items: [
       { text: 'Vue.js', url: 'https://vuejs.org/' },
       { text: 'Vuetify', url: 'https://vuetifyjs.com/en/' },
@@ -56,31 +61,45 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   methods: {
-    // Get current ticket requester info
-    getRequesterInfo: async function () {
+    // Load initial data
+    loadInitialData: async function () {
       try {
-        const ticket = (await client.get('ticket')).ticket
+        this.loading = true
 
-        this.requester = {
-          id: ticket.requester.id,
-          name: ticket.requester.name,
-          email: ticket.requester.email,
-          avatar: ticket.requester.avatarUrl
-        }
+        await this.fetchTicketInfo()
       }
 
       catch (err) {
-        this.handleError(err, 'An error has occurred while fetching requester information.')
+        console.error(err)
+      }
+
+      finally {
+        this.loading = false
+      }
+    },
+
+    // Get current ticket info
+    fetchTicketInfo: async function () {
+      try {
+        const ticket = (await client.get('ticket')).ticket
+
+        this.ticket = ticket
+      }
+
+      catch (err) {
+        this.handleError(err, 'An error has occurred while fetching ticket information.')
       }
     },
 
     // Handle error messages
     handleError: function (err, message) {
-      console.error(err)
+      if (message) {
+        client.invoke('notify', message, 'error', {
+          sticky: true
+        })
+      }
 
-      client.invoke('notify', message, 'error', {
-        sticky: true
-      })
+      throw err
     }
   },
 
@@ -89,8 +108,8 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   // Execute when the app is created
-  created: async function () {
-    await this.getRequesterInfo()
+  created: function () {
+    this.loadInitialData()
   }
 
 })
