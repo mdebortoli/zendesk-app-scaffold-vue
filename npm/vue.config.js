@@ -17,12 +17,12 @@ module.exports = {
     plugins: [
       new CopyWebpackPlugin([
         {
-          from: './zat',
+          from: './zaf',
           to: '../',
           ignore: ['manifest.json']
         },
         {
-          from: './zat/manifest.json',
+          from: './zaf/manifest.json',
           to: '../manifest.json',
           transform(content) {
             return buildZendeskManifest(Buffer.from(content.toJSON()))

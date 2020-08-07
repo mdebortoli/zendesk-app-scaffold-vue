@@ -14,9 +14,9 @@ const vuetify = new Vuetify({
         info: '#2196F3',
         success: '#4CAF50',
         warning: '#FFC107'
-      },
-    },
-  },
+      }
+    }
+  }
 })
 
 // Initialise Vue instance
@@ -39,14 +39,27 @@ const vm = new Vue({
     defaultAvatar: 'https://i2.wp.com/assets.zendesk.com/images/2016/default-avatar-80.png',
 
     // Selected item
-    item: 0,
+    selectedItem: 0,
 
     // Items (built with ...)
     items: [
-      { text: 'Vue.js', url: 'https://vuejs.org/' },
-      { text: 'Vuetify', url: 'https://vuetifyjs.com/en/' },
-      { text: 'ZAF Client API', url: 'https://developer.zendesk.com/apps/docs/core-api/client_api' },
-      { text: 'Marcelo De Bortoli 😉' }
+      {
+        name: 'Vue.js',
+        url: 'https://vuejs.org/'
+      },
+      {
+        name: 'Vuetify',
+        url: 'https://vuetifyjs.com/en/'
+      },
+      {
+        name: 'ZAF Client API',
+        url: 'https://developer.zendesk.com/apps/docs/core-api/client_api'
+      },
+      {
+        name: 'Marcelo De Bortoli 😉',
+        email: 'marcelodebortoli@gmail.com',
+        avatarUrl: 'https://secure.gravatar.com/avatar/08076417b258015b9e12af346358edeb?s=200'
+      }
     ]
   },
 
@@ -54,7 +67,34 @@ const vm = new Vue({
   // Computed
   /////////////////////////////////////////////////////////////////////////////
 
-  computed: {},
+  computed: {
+    ticketRequester: function () {
+      let user = {
+        name: null,
+        email: null,
+        avatarUrl: this.defaultAvatar
+      }
+
+      const currentItem = this.items[this.selectedItem]
+
+      if (currentItem && currentItem.name && currentItem.email) {
+        user = {
+          name: currentItem.name,
+          email: currentItem.email,
+          avatarUrl: currentItem.avatarUrl || this.defaultAvatar
+        }
+      }
+      else if (this.ticket && this.ticket.requester) {
+        user = {
+          name: this.ticket.requester.name || user.name,
+          email: this.ticket.requester.email || user.email,
+          avatarUrl: this.ticket.requester.avatarUrl || this.defaultAvatar
+        }
+      }
+
+      return user
+    }
+  },
 
   /////////////////////////////////////////////////////////////////////////////
   // Methods
@@ -65,12 +105,13 @@ const vm = new Vue({
     loadInitialData: async function () {
       try {
         this.loading = true
-
-        await this.fetchTicketInfo()
+        this.ticket = await this.fetchTicketInfo()
       }
 
       catch (err) {
-        console.error(err)
+        client.invoke('notify', err, 'error', {
+          sticky: true
+        })
       }
 
       finally {
@@ -78,28 +119,19 @@ const vm = new Vue({
       }
     },
 
-    // Get current ticket info
+    // Fetch current ticket info
     fetchTicketInfo: async function () {
       try {
         const ticket = (await client.get('ticket')).ticket
 
-        this.ticket = ticket
+        return ticket
       }
 
       catch (err) {
-        this.handleError(err, 'An error has occurred while fetching ticket information.')
-      }
-    },
+        console.error(err)
 
-    // Handle error messages
-    handleError: function (err, message) {
-      if (message) {
-        client.invoke('notify', message, 'error', {
-          sticky: true
-        })
+        throw 'An error has occurred while fetching ticket information.'
       }
-
-      throw err
     }
   },
 

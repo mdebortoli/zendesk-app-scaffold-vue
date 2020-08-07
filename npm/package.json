@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "zat": "zat server --path=./zat",
+    "zat": "zat server --path=./zaf",
     "dev": "vue-cli-service serve | npm run zat",
     "publish": "vue-cli-service build && zat validate --path=./dist && zat package --path=./dist"
   },

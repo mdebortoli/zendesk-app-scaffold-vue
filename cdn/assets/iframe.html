@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <!-- Required CSS modules-->
+  <!-- Required CSS modules -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.3.8/dist/vuetify.min.css" rel="stylesheet" />
   <link href="styles.css" rel="stylesheet" />
 </head>
 
@@ -18,10 +18,10 @@
       <!-- User info - Start -->
       <div class="user-info text-center">
         <v-avatar>
-          <v-img :src="ticket.requester.avatar ? ticket.requester.avatar : defaultAvatar" />
+          <v-img :src="ticketRequester.avatarUrl" />
         </v-avatar>
-        <h1 class="text-center">{{ ticket.requester.name }}</h1>
-        <p class="text-center">{{ ticket.requester.email }}</p>
+        <h1 class="text-center">{{ ticketRequester.name }}</h1>
+        <p class="text-center">{{ ticketRequester.email }}</p>
       </div>
       <!-- User info - End -->
 
@@ -33,42 +33,42 @@
       </p>
 
       <v-list dense>
-        <v-list-item-group v-model="item" color="primary">
+        <v-list-item-group v-model="selectedItem" color="primary">
           <v-list-item v-for="(item, i) in items" :key="`item-${i}`">
             <v-list-item-icon>
               <v-icon size="15">fa-chevron-right</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
+              <v-list-item-title>{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
       </v-list>
 
-      <v-divider class="my-3"></v-divider>
-
-      <p class="text-center">
-        <v-btn
-          v-if="items[item] && items[item].url"
-          class="text-none text-normal-spacing white--text"
-          color="primary"
-          block
-          depressed
-          :href="items[item].url"
-          target="_blank"
-        >
-          Find out more about {{ items[item].text }}
-        </v-btn>
-      </p>
+      <template v-if="items[selectedItem] && items[selectedItem].url">
+        <v-divider class="my-3"></v-divider>
+        <p class="text-center">
+          <v-btn
+            class="text-none text-normal-spacing"
+            color="primary"
+            block
+            depressed
+            :href="items[selectedItem].url"
+            target="_blank"
+          >
+            Find out more about {{ items[selectedItem].name }}
+          </v-btn>
+        </p>
+      </template>
       <!-- App content - End -->
 
     </div>
   </v-app>
 
-  <!-- Required JS modules-->
+  <!-- Required JS modules -->
   <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.3.8/dist/vuetify.min.js"></script>
   <script src="app.js"></script>
 </body>
 
