@@ -68,6 +68,7 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   computed: {
+    // Return ticket requester information
     ticketRequester: function () {
       let user = {
         name: null,
@@ -77,6 +78,7 @@ const vm = new Vue({
 
       const currentItem = this.items[this.selectedItem]
 
+      // Easter Egg (if the current selected item is a user)
       if (currentItem && currentItem.name && currentItem.email) {
         user = {
           name: currentItem.name,
