@@ -69,7 +69,7 @@ const vm = new Vue({
 
   computed: {
     // Return ticket requester details
-    // Easter Egg if current selected item is a user (if it has an email set)
+    // Easter Egg if current selected item is a person (if it has an email set)
     ticketRequester: function () {
       const requester = this.ticket && this.ticket.requester
       const currentItem = parseInt(this.selectedItem) && this.items[this.selectedItem]
