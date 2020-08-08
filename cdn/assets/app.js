@@ -1,6 +1,6 @@
 // Initialise Apps framework client. See also:
 // https://developer.zendesk.com/apps/docs/developer-guide/getting_started
-var client = ZAFClient.init()
+const client = ZAFClient.init()
 
 // Vuetify settings
 const vuetify = new Vuetify({
