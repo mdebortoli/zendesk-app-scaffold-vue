@@ -54,8 +54,7 @@
           color="primary"
           block
           depressed
-          :href="items[selectedItem].url"
-          target="_blank"
+          @click="openModal(items[selectedItem].url)"
         >
           Find out more about {{ items[selectedItem].name }}
         </v-btn>

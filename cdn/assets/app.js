@@ -130,6 +130,18 @@ const vm = new Vue({
         width: '100%',
         height: appHeight
       })
+    },
+
+    // Open modal window with a specific URL
+    openModal: function (url) {
+      client.invoke('instances.create', {
+        location: 'modal',
+        url: url,
+        size: {
+          width: '80vw',
+          height: '80vh'
+        }
+      })
     }
   },
 
