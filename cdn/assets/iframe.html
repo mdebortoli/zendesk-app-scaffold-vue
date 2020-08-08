@@ -34,6 +34,7 @@
 
       <v-list dense>
         <v-list-item-group v-model="selectedItem" color="primary">
+
           <v-list-item v-for="(item, i) in items" :key="`item-${i}`">
             <v-list-item-icon>
               <v-icon size="18">mdi-chevron-right</v-icon>
@@ -42,6 +43,7 @@
               <v-list-item-title>{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
         </v-list-item-group>
       </v-list>
 
