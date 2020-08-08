@@ -118,6 +118,9 @@ const vm = new Vue({
 
       finally {
         this.loading = false
+        this.$nextTick(function () {
+          this.resizeApp()
+        })
       }
     },
 
@@ -134,6 +137,17 @@ const vm = new Vue({
 
         throw 'An error has occurred while fetching ticket information.'
       }
+    },
+
+    // Resize app based on the main app container height
+    resizeApp: function () {
+      const appHeight = this.$refs.main.offsetHeight + 'px'
+      console.log(appHeight)
+
+      client.invoke('resize', {
+        width: '100%',
+        height: appHeight
+      })
     }
   },
 
@@ -144,6 +158,15 @@ const vm = new Vue({
   // Execute when the app is created
   created: function () {
     this.loadInitialData()
+  },
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Updated
+  /////////////////////////////////////////////////////////////////////////////
+
+  // Execute when the app is updated
+  updated: function () {
+    this.resizeApp()
   }
 
 })
