@@ -77,7 +77,7 @@ const vm = new Vue({
       const user = {
         name: currentItem.email ? currentItem.name : requester.name || null,
         email: currentItem.email || requester.email || null,
-        avatarUrl: currentItem.avatarUrl || (!currentItem.email && requester.avatarUrl || this.defaultAvatar)
+        avatarUrl: currentItem.email && currentItem.avatarUrl || requester.avatarUrl || this.defaultAvatar
       }
 
       return user
