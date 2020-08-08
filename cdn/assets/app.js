@@ -58,7 +58,7 @@ const vm = new Vue({
       {
         name: 'Marcelo De Bortoli 😉',
         email: 'marcelodebortoli@gmail.com',
-        avatarUrl: 'https://secure.gravatar.com/avatar/08076417b258015b9e12af346358edeb?s=200'
+        avatarUrl: 'https://secure.gravatar.com/avatar/08076417b258015b9e12af346358edeb'
       }
     ]
   },
@@ -68,32 +68,16 @@ const vm = new Vue({
   /////////////////////////////////////////////////////////////////////////////
 
   computed: {
-    // Return ticket requester information
+    // Return ticket requester details
+    // Easter Egg if current selected item is a user (if it has an email set)
     ticketRequester: function () {
-      let user = {
-        name: null,
-        email: null,
-        avatarUrl: this.defaultAvatar
-      }
+      const requester = this.ticket && this.ticket.requester
+      const currentItem = parseInt(this.selectedItem) && this.items[this.selectedItem]
 
-      const currentItem = this.items[this.selectedItem]
-
-      // If the current selected item is a user (easter egg)
-      if (currentItem && currentItem.name && currentItem.email) {
-        user = {
-          name: currentItem.name,
-          email: currentItem.email,
-          avatarUrl: currentItem.avatarUrl || this.defaultAvatar
-        }
-      }
-
-      // If there is a ticket requester
-      else if (this.ticket && this.ticket.requester) {
-        user = {
-          name: this.ticket.requester.name || user.name,
-          email: this.ticket.requester.email || user.email,
-          avatarUrl: this.ticket.requester.avatarUrl || this.defaultAvatar
-        }
+      const user = {
+        name: currentItem.email ? currentItem.name : requester.name || null,
+        email: currentItem.email || requester.email || null,
+        avatarUrl: currentItem.avatarUrl || (!currentItem.email && requester.avatarUrl || this.defaultAvatar)
       }
 
       return user
