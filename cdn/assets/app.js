@@ -78,7 +78,7 @@ const vm = new Vue({
 
       const currentItem = this.items[this.selectedItem]
 
-      // Easter Egg (if the current selected item is a user)
+      // If the current selected item is a user (easter egg)
       if (currentItem && currentItem.name && currentItem.email) {
         user = {
           name: currentItem.name,
@@ -86,6 +86,8 @@ const vm = new Vue({
           avatarUrl: currentItem.avatarUrl || this.defaultAvatar
         }
       }
+
+      // If there is a ticket requester
       else if (this.ticket && this.ticket.requester) {
         user = {
           name: this.ticket.requester.name || user.name,
@@ -142,7 +144,6 @@ const vm = new Vue({
     // Resize app based on the main app container height
     resizeApp: function () {
       const appHeight = this.$refs.main.offsetHeight + 'px'
-      console.log(appHeight)
 
       client.invoke('resize', {
         width: '100%',
