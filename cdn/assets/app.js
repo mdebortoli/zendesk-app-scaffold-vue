@@ -120,9 +120,6 @@ const vm = new Vue({
 
       finally {
         this.loading = false
-        this.$nextTick(function () {
-          this.resizeApp()
-        })
       }
     },
 
