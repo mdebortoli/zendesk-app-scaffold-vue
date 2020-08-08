@@ -11,7 +11,7 @@
     <v-divider class="my-3" />
 
     <p class="text-center">
-      This is a sample app built with <v-icon color="red darken-3" size="20">fa-heart</v-icon> and:
+      This is a sample app built with <v-icon color="red darken-3" size="22">mdi-heart</v-icon> and:
     </p>
 
     <!-- "built with" list -->

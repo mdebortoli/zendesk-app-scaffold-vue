@@ -19,6 +19,7 @@
     "zendesk_app_framework_sdk": "^2.0.11"
   },
   "devDependencies": {
+    "@mdi/font": "^5.4.55",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-vuex": "~4.2.0",

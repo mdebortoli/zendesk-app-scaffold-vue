@@ -4,7 +4,7 @@
       <v-list-item-group v-model="selected" color="primary">
         <v-list-item v-for="(item, index) in items" :key="index">
           <v-list-item-icon>
-            <v-icon size="15">fa-chevron-right</v-icon>
+            <v-icon size="18">mdi-chevron-right</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ item.text }}</v-list-item-title>
