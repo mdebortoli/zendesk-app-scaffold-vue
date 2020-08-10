@@ -7,13 +7,13 @@ const vuetify = new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: '#337FBD',
+        primary: '#337fbd',
         secondary: '#616161',
-        accent: '#82B1FF',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FFC107'
+        accent: '#82b1ff',
+        error: '#ff5252',
+        info: '#2196f3',
+        success: '#4caf50',
+        warning: '#ffc107'
       }
     }
   }
@@ -95,13 +95,11 @@ const vm = new Vue({
         this.loading = true
         this.ticket = await this.fetchTicketInfo()
       }
-
       catch (err) {
         client.invoke('notify', err, 'error', {
           sticky: true
         })
       }
-
       finally {
         this.loading = false
       }
@@ -114,7 +112,6 @@ const vm = new Vue({
 
         return ticket
       }
-
       catch (err) {
         console.error(err)
 
@@ -124,12 +121,14 @@ const vm = new Vue({
 
     // Resize app based on the main app container height
     resizeApp: function () {
-      const appHeight = this.$refs.main.offsetHeight + 'px'
+      if (this.$refs.main) {
+        const appHeight = this.$refs.main.offsetHeight + 'px'
 
-      client.invoke('resize', {
-        width: '100%',
-        height: appHeight
-      })
+        client.invoke('resize', {
+          width: '100%',
+          height: appHeight
+        })
+      }
     }
   },
 
@@ -150,5 +149,4 @@ const vm = new Vue({
   updated: function () {
     this.resizeApp()
   }
-
 })

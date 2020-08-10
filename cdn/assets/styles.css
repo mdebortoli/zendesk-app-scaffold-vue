@@ -37,15 +37,15 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.first-dot {
+.loader .first-dot {
   animation: first-dot-animation 1250ms infinite linear;
 }
 
-.second-dot {
+.loader .second-dot {
   animation: second-dot-animation 1250ms infinite linear;
 }
 
-.third-dot {
+.loader .third-dot {
   animation: third-dot-animation 1250ms infinite linear;
 }
 
