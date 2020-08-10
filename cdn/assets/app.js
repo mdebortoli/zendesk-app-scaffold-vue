@@ -57,7 +57,7 @@ const vm = new Vue({
       },
       {
         name: 'Marcelo De Bortoli 😉',
-        email: 'marcelodebortoli@gmail.com',
+        email: '&#109;&#097;&#114;&#099;&#101;&#108;&#111;&#100;&#101;&#098;&#111;&#114;&#116;&#111;&#108;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;',
         avatarUrl: 'https://secure.gravatar.com/avatar/08076417b258015b9e12af346358edeb'
       }
     ]
@@ -129,18 +129,6 @@ const vm = new Vue({
       client.invoke('resize', {
         width: '100%',
         height: appHeight
-      })
-    },
-
-    // Open modal window with a specific URL
-    openModal: function (url) {
-      client.invoke('instances.create', {
-        location: 'modal',
-        url: url,
-        size: {
-          width: '80vw',
-          height: '80vh'
-        }
       })
     }
   },

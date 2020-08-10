@@ -21,7 +21,7 @@
           <v-img :src="ticketRequester.avatarUrl" />
         </v-avatar>
         <h1 class="text-center">{{ ticketRequester.name }}</h1>
-        <p class="text-center">{{ ticketRequester.email }}</p>
+        <p class="text-center" v-html="ticketRequester.email"></p>
       </div>
       <!-- User info - End -->
 
@@ -54,7 +54,8 @@
           color="primary"
           block
           depressed
-          @click="openModal(items[selectedItem].url)"
+          :href="items[selectedItem].url"
+          target="_blank"
         >
           Find out more about {{ items[selectedItem].name }}
         </v-btn>
