@@ -49,14 +49,7 @@
 
       <template v-if="items[selectedItem] && items[selectedItem].url">
         <v-divider class="my-3"></v-divider>
-        <v-btn
-          class="text-none text-normal-spacing"
-          color="primary"
-          block
-          depressed
-          :href="items[selectedItem].url"
-          target="_blank"
-        >
+        <v-btn color="primary" block depressed :href="items[selectedItem].url" target="_blank">
           Find out more about {{ items[selectedItem].name }}
         </v-btn>
       </template>
@@ -66,7 +59,7 @@
 
     <!-- Loader - Start -->
     <div v-if="loading" class="loader">
-      <svg class="primary--text" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 80 72">
+      <svg xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 80 72" class="primary--text">
         <g fill="currentColor">
           <circle cy="36" r="9" cx="9" class="first-dot"></circle>
           <circle cy="36" r="9" cx="40" class="second-dot"></circle>

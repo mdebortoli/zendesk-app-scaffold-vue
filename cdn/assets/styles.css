@@ -12,7 +12,9 @@ h1 {
   font-size: 22px;
 }
 
-#app .text-normal-spacing {
+.v-btn__content {
+  text-transform: none;
+  font-size: 13px;
   letter-spacing: normal;
 }
 
